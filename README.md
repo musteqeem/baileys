@@ -62,7 +62,9 @@ const startBot = async () => {
     })
 }
 
-startBot()
+startBot() 
+```
+
 📊 Feature Matrix
 Feature	Enterprise Support
 **Multi-Device Auth**	Persistent, file-based session storage
@@ -73,7 +75,7 @@ Feature	Enterprise Support
 🛠️ Requirements
 - `Node.js >= 18.0.0`
 - Stable Internet Connection
-
+</p>
 🌐 Other Premium Projects by Musteqeem
 
 If you build AI + Automation, check these out:
