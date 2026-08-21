@@ -2,7 +2,7 @@
 
 @musteqeem/baileys
 
-<img src="https://i.imgur.com/4wR1j3K.png" width="120" alt="Baileys Logo"/>
+<img src="https://files.catbox.moe/bkvkel.jpeg" width="120" alt="Baileys Logo"/>
 
 The Enterprise-Grade WhatsApp Web API for Node.js
 **Built for AI Agents, Automation, and Production Bots**
@@ -23,7 +23,7 @@ Core Capabilities
 - **🤖 AI-Native**: Plug-and-play with OpenAI, Gemini, Claude, LangChain, and custom LLMs
 - **⚡ Multi-Device v2**: Persistent sessions. QR once, run forever with `multi-file-auth-state`
 - **🛡️ Anti-Disconnect**: Smart auto-reconnect, QR rotation, and rate-limit handling
-- **📁 Full Media Suite**: Images, Video, Voice Notes, Documents, Stickers, Polls, Buttons
+- **📁 Full Media Suite**: Images, Video, Voice Notes, Documents, Stickers, Polls, Buttons, AiBadge
 - **👥 Group OS**: Create, manage, promote, demote, get metadata, send announcements
 - **🔄 Real-time Events**: `messages.upsert`, `groups.update`, `presence.update`, `creds.update`
 
@@ -62,9 +62,8 @@ const startBot = async () => {
     })
 }
 
-startBot() 
+startBot()
 ```
-
 📊 Feature Matrix
 Feature	Enterprise Support
 **Multi-Device Auth**	Persistent, file-based session storage
@@ -75,7 +74,7 @@ Feature	Enterprise Support
 🛠️ Requirements
 - `Node.js >= 18.0.0`
 - Stable Internet Connection
-</p>
+
 🌐 Other Premium Projects by Musteqeem
 
 If you build AI + Automation, check these out:
@@ -87,6 +86,7 @@ For full API reference, see the https://github.com/musteqeem/Baileys/wiki
 
 🤝 Contributing
 PRs, issues, and sponsorships welcome. This package is maintained for the professional bot developer community.
+**😁 Please Star the Repo**
 
 📄 License
 `MIT` © 2026 Musteqeem. Built with ❤️ for serious developers.
