@@ -146,13 +146,14 @@ Join the professional developers building with us.
 </div>
 
 ---
-
-🌐 Other Premium Projects by Musteqeem AKA Future Scientist
+## 🌐 Other Premium Projects by Musteqeem AKA Future Scientist
 
 If you build AI + Automation, these are for you:
-Project	Description
-https://github.com/CEOcybershieldquad/XADON-AI	Advanced Multi-Agent AI Framework. Deploy GPT-5 powered WhatsApp/Telegram AI employees with tool-use
-https://github.com/musteqeem/XADON_AI	The core XADON AI Engine. Voice, Vision, RAG, and Memory for next-generation bots
+
+| Project | Description |
+| :--- | :--- |
+| [XADON-AI](https://github.com/CEOcybershieldquad/XADON-AI) | **WhatsApp Bot Framework V1**<br>Advanced Multi-Agent AI. Deploy GPT-5 powered WhatsApp AI employees with tool-use for group management and many more |
+| [XADON_AI](https://github.com/musteqeem/XADON_AI) | **Core XADON AI Engine V2**<br>Voice, Vision, RAG, and Memory for next-generation bots. Built for defense. Deploy on a node.js panel and run .menu to begin |
 ---
 
 🤝 Contributing
