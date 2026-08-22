@@ -1,11 +1,17 @@
 <div align="center">
-<b>Bismillah ar-Rahman ar-Rahim</b><br>
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1500&color=00E5FF&center=true&vCenter=true&width=650&lines=Built+to+help+businesses+serve+people+better%2C+InshaAllah" alt="Typing SVG" />
+
+<b>Bismillah ar-Rahman ar-Rahim</b><br><br>
+
+<!-- GRADIENT BANNER -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,20,24&height=200&section=header&text=@musteqeem%2Fbaileys&fontSize=40&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Enterprise+WhatsApp+API+for+Node.js&descAlignY=55&descSize=16" />
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1500&color=00E5FF;8B5CF6;10B981&center=true&vCenter=true&width=650&lines=Built+to+help+businesses+serve+people+better%2C;InshaAllah" alt="Typing SVG" />
+
 <img src="https://files.catbox.moe/bkvkel.jpeg" width="150" alt="BAILEYS Logo"/>
 
 @musteqeem/baileys
 
-<h2><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&duration=2500&pause=1000&color=00E5FF&center=true&vCenter=true&multiline=true&width=650&height=90&lines=A+premium+Baileys+made+by+Musteqeem;The+Enterprise+WhatsApp+API+for+Node.js;Built+for+AI%2C+Automation%2C+and+Scale" alt="Typing SVG" /></h2>
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&duration=2500&pause=1000&color=00E5FF;8B5CF6;10B981&center=true&vCenter=true&multiline=true&width=650&height=80&lines=A+premium+Baileys+made+by+Musteqeem;The+Enterprise+WhatsApp+API+for+Node.js;Built+for+AI%2C+Automation%2C+and+Scale" alt="Typing SVG" />
 
 **Engineered for Production. Optimized for AI. Trusted at Scale.**
 
@@ -13,6 +19,19 @@
 <a href="https://www.npmjs.com/package/@musteqeem/baileys"><img src="https://img.shields.io/npm/dt/@musteqeem/baileys.svg?style=for-the-badge&color=8B5CF6" alt="npm downloads"></a>
 <a href="https://github.com/musteqeem/baileys/stargazers"><img src="https://img.shields.io/github/stars/musteqeem/baileys?style=for-the-badge&color=FFD700&logo=github" alt="GitHub stars"></a>
 <a href="https://github.com/musteqeem/baileys/network/members"><img src="https://img.shields.io/github/forks/musteqeem/baileys?style=for-the-badge&color=EC4899&logo=github" alt="GitHub forks"></a>
+
+<br><br>
+
+<!-- GITHUB STATS BANNER -->
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=musteqeem&repo=baileys&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00E5FF&icon_color=8B5CF6" height="165" alt="GitHub Stats"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=musteqeem&repo=baileys&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00E5FF" height="165" alt="Top Languages"/>
+</p>
+
+<!-- GITHUB STREAK -->
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=musteqeem&theme=tokyonight&hide_border=true&background=0D1117&ring=00E5FF&fire=FFD700&currStreakLabel=8B5CF6" alt="GitHub Streak"/>
+</p>
 
 </div>
 
@@ -35,11 +54,16 @@ Key Production Enhancements
 ---
 
 📦 Installation
+
 ```bash
 npm i @musteqeem/baileys
+```
 or
+```bash
 yarn add @musteqeem/baileys
+```
 🚀 Quick Start: Production Bot Template
+```bash
 import makeWASocket, { useMultiFileAuthState, DisconnectReason, Browsers } from '@musteqeem/baileys'
 import { Boom } from '@hapi/boom'
 
@@ -65,6 +89,16 @@ const startSock = async () => {
 
         // 1. Send to your AI: OpenAI, Gemini, Claude
         // const aiReply = await yourAI(text)
+
+        // 2. Reply with Interactive Button
+        await sock.sendMessage(msg.key.remoteJid!, {
+            text: `AI Response: Hello!`,
+            footer: "Powered by @musteqeem/baileys",
+            buttons: [{ buttonId: 'menu', buttonText: { displayText: 'Menu' }, type: 1 }],
+            headerType: 1
+        })
+    })
+
     sock.ev.on('connection.update', ({ connection, lastDisconnect }) => {
         if(connection === 'close') {
             const shouldReconnect = (lastDisconnect?.error as Boom)?.output?.statusCode!== DisconnectReason.loggedOut
@@ -74,17 +108,7 @@ const startSock = async () => {
 }
 startSock()
 ```
-**Reply with Interactive Button**
-```bash
-        await sock.sendMessage(msg.key.remoteJid!, {
-            text: `AI Response: Hello!`,
-            footer: "Powered by @musteqeem/baileys",
-            buttons: [{ buttonId: 'menu', buttonText: { displayText: 'Menu' }, type: 1 }],
-            headerType: 1
-        })
-    })
-``` 
-🧠 Example: Send Album + Newsletter Message
+🧠 Example: Send Album
 ```bash
 await sock.sendMessage(jid, {
     album: [
@@ -93,31 +117,32 @@ await sock.sendMessage(jid, {
     ]
 })
 ```
-**😃 Send to Newsletter Channel**
+😃 Example: Send to Newsletter Channel
 ```bash
 await sock.newsletterMetadata("jid", "description")
 await sock.sendNewsletterMessage("newsletter_jid", { text: "New Update" })
 ```
 
-📊 @musteqeem/baileys vs WhiskeySocket
-Feature	@musteqeem/baileys	WhiskeySocket
-**Newsletter Media Upload**	✅ Fixed & Stable	❌ Broken
-**Interactive Buttons/Lists**	✅ Full Native API	⚠️ Partial
-**Album Messages**	✅ First-class Support	❌ Not Supported
-**Anti-Ban & Reconnect**	✅ Enterprise Logic	⚠️ Basic
-**Node 20+ & ESM**	✅ Modern Stack	⚠️ Legacy
-**Active Maintenance**	✅ By Musteqeem	⚠️ Sporadic
+## 📊 @musteqeem/baileys vs WhiskeySocket
+
+| Feature | @musteqeem/baileys | WhiskeySocket |
+| :--- | :---: | :---: |
+| **Newsletter Media Upload** | ✅ Fixed & Stable | ❌ Broken |
+| **Interactive Buttons/Lists** | ✅ Full Native API | ⚠️ Partial |
+| **Album Messages** | ✅ First-class Support | ❌ Not Supported |
+| **Anti-Ban & Reconnect** | ✅ Enterprise Logic | ⚠️ Basic |
+| **Node 20+ & ESM** | ✅ Modern Stack | ⚠️ Legacy |
+| **Active Maintenance** | ✅ By Musteqeem | ⚠️ Sporadic |
 ---
 
 🌐 Community
+
 Join the professional developers building with us.
 
 <div align="center">
-
 <a href="https://chat.whatsapp.com/Ebd5NAkaJIDGb4GFNR23xs"><img src="https://img.shields.io/badge/WhatsApp%20Community-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" /></a>
 <a href="https://t.me/xadontech"><img src="https://img.shields.io/badge/Telegram%20Channel-0088cc?style=for-the-badge&logo=telegram&logoColor=white" /></a>
 <a href="https://t.me/xadonite"><img src="https://img.shields.io/badge/Contact%20Owner-6366F1?style=for-the-badge&logo=telegram&logoColor=white" /></a>
-
 </div>
 
 ---
@@ -131,23 +156,25 @@ https://github.com/musteqeem/XADON_AI	The core XADON AI Engine. Voice, Vision, R
 ---
 
 🤝 Contributing
+
 We welcome PRs from professional developers. Please read our contributing guidelines before submitting.
 
 Don't Forget to ✨ *Star* 🌟 and *Fork* this repo to support the project
 
 ---
-### ⚠️ Responsible Use
-This library is for automation, customer support, and AI agents only. 
-Please follow WhatsApp's Terms of Service and local laws. 
-Do not use for spam, fraud, or harming others. "And cooperate in righteousness and piety" [Qur'an 5:2]
+
+⚠️ Responsible Use
+This library is for automation, customer support, and AI agents only.
+Please follow WhatsApp's Terms of Service and local laws.
+Do not use for spam, fraud, or harming others. _"And cooperate in righteousness and piety"_ [Qur'an 5:2]
+
 ---
 
 📄 License
-`MIT` © 2026 Musteqeem. *MUSTEQEEM MD • Cybershield Squad alive*
+`MIT` © 2026 Musteqeem. _MUSTEQEEM MD • Cybershield Squad alive_
 
 ---
 <div align="center">
 Built for serious developers. Deployed in production worldwide.<br>
-**You are ultimately welcomed 👑🤗**
+<i>You are ultimately welcomed 👑🤗</i>
 </div>
-
