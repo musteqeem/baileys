@@ -1,97 +1,153 @@
 <div align="center">
+<b>Bismillah ar-Rahman ar-Rahim</b><br>
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1500&color=00E5FF&center=true&vCenter=true&width=650&lines=Built+to+help+businesses+serve+people+better%2C+InshaAllah" alt="Typing SVG" />
+<img src="https://files.catbox.moe/bkvkel.jpeg" width="150" alt="BAILEYS Logo"/>
 
 @musteqeem/baileys
 
-<img src="https://files.catbox.moe/bkvkel.jpeg" width="120" alt="Baileys Logo"/>
+<h2><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&duration=2500&pause=1000&color=00E5FF&center=true&vCenter=true&multiline=true&width=650&height=90&lines=A+premium+Baileys+made+by+Musteqeem;The+Enterprise+WhatsApp+API+for+Node.js;Built+for+AI%2C+Automation%2C+and+Scale" alt="Typing SVG" /></h2>
 
-The Enterprise-Grade WhatsApp Web API for Node.js
-**Built for AI Agents, Automation, and Production Bots**
+**Engineered for Production. Optimized for AI. Trusted at Scale.**
 
-<a href="https://www.npmjs.com/package/@musteqeem/baileys"><img src="https://img.shields.io/npm/v/@musteqeem/baileys.svg?style=for-the-badge&logo=npm" alt="npm version"></a>
-<a href="https://www.npmjs.com/package/@musteqeem/baileys"><img src="https://img.shields.io/npm/dt/@musteqeem/baileys.svg?style=for-the-badge" alt="npm downloads"></a>
-<a href="#"><img src="https://img.shields.io/badge/AI%20Ready-ChatGPT%20%7C%20Gemini%20%7C%20Claude-00C853?style=for-the-badge&logo=openai" alt="AI Ready"></a>
+<a href="https://www.npmjs.com/package/@musteqeem/baileys"><img src="https://img.shields.io/npm/v/@musteqeem/baileys.svg?style=for-the-badge&logo=npm&color=00E5FF" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@musteqeem/baileys"><img src="https://img.shields.io/npm/dt/@musteqeem/baileys.svg?style=for-the-badge&color=8B5CF6" alt="npm downloads"></a>
+<a href="https://github.com/musteqeem/baileys/stargazers"><img src="https://img.shields.io/github/stars/musteqeem/baileys?style=for-the-badge&color=FFD700&logo=github" alt="GitHub stars"></a>
+<a href="https://github.com/musteqeem/baileys/network/members"><img src="https://img.shields.io/github/forks/musteqeem/baileys?style=for-the-badge&color=EC4899&logo=github" alt="GitHub forks"></a>
 
 </div>
 
 ---
 
-⚡ Why Production Teams Choose This
+⚡ Why Enterprises Choose @musteqeem/baileys
 
-A battle-tested, lightweight fork of Baileys optimized for reliability, speed, and AI integration. Used to power 24/7 customer support bots, AI assistants, and automation pipelines.
+This is not another fork. This is a production-hardened re-engineering of Baileys designed for developers building AI agents, customer support systems, and high-volume automation at scale.
 
-Core Capabilities
-- **🤖 AI-Native**: Plug-and-play with OpenAI, Gemini, Claude, LangChain, and custom LLMs
-- **⚡ Multi-Device v2**: Persistent sessions. QR once, run forever with `multi-file-auth-state`
-- **🛡️ Anti-Disconnect**: Smart auto-reconnect, QR rotation, and rate-limit handling
-- **📁 Full Media Suite**: Images, Video, Voice Notes, Documents, Stickers, Polls, Buttons, AiBadge
-- **👥 Group OS**: Create, manage, promote, demote, get metadata, send announcements
-- **🔄 Real-time Events**: `messages.upsert`, `groups.update`, `presence.update`, `creds.update`
+Unlike legacy libraries, we fix what breaks in production.
+
+Key Production Enhancements
+- **✅ Critical Newsletter Media Fix**: Patched media upload pipeline. No more 400 errors on channels.
+- **🤖 Full Interactive Protocol**: Native support for Buttons, Lists, CTA, and Flows. Ready for AI agents.
+- **📁 Album & Media Suite**: Send/Receive albums, documents, audio, video, stickers with zero workarounds.
+- **🛡️ Enterprise Anti-Ban**: Intelligent backoff, session rotation, and multi-device stability for 24/7 uptime.
+- **⚡ 40+ Extended Message Types**: Full coverage of the latest WhatsApp Web payloads.
+- **🔄 Persistent Sessions**: `multi-file-auth-state` for serverless, Docker, and PM2 deployments.
+
+---
 
 📦 Installation
 ```bash
 npm i @musteqeem/baileys
-🚀 Quick Start: AI Assistant Bot
-import { default as makeWASocket, useMultiFileAuthState, DisconnectReason } from '@musteqeem/baileys'
+or
+yarn add @musteqeem/baileys
+🚀 Quick Start: Production Bot Template
+import makeWASocket, { useMultiFileAuthState, DisconnectReason, Browsers } from '@musteqeem/baileys'
 import { Boom } from '@hapi/boom'
 
-const startBot = async () => {
-    const { state, saveCreds } = await useMultiFileAuthState('auth_info')
+const startSock = async () => {
+    const { state, saveCreds } = await useMultiFileAuthState('baileys_auth')
+
     const sock = makeWASocket({
         auth: state,
-        printQRInTerminal: true // Set to false in production
+        browser: Browsers.macOS('Chrome'), // Improves anti-ban
+        printQRInTerminal: true,
+        markMessagesAsRead: false
     })
 
     sock.ev.on('creds.update', saveCreds)
 
+    // Example: AI Agent Reply
     sock.ev.on('messages.upsert', async ({ messages }) => {
         const msg = messages[0]
-        if(!msg.message || msg.key.fromMe) return
+        if (!msg.message || msg.key.fromMe) return
 
-        const text = msg.message.conversation || msg.message.extendedTextMessage?.text || ''
+        const text = msg.message.conversation || msg.message.extendedTextMessage?.text
+        if (!text) return
 
-        // Example: Send to your AI and reply
-        const aiResponse = await getAIResponse(text) // Your AI function
-        await sock.sendMessage(msg.key.remoteJid, { text: aiResponse })
-    })
-
+        // 1. Send to your AI: OpenAI, Gemini, Claude
+        // const aiReply = await yourAI(text)
     sock.ev.on('connection.update', ({ connection, lastDisconnect }) => {
         if(connection === 'close') {
-            const shouldReconnect = (lastDisconnect.error as Boom)?.output?.statusCode!== DisconnectReason.loggedOut
-            if(shouldReconnect) startBot()
+            const shouldReconnect = (lastDisconnect?.error as Boom)?.output?.statusCode!== DisconnectReason.loggedOut
+            if(shouldReconnect) startSock()
         }
     })
 }
-
-startBot()
+startSock()
 ```
-📊 Feature Matrix
-Feature	Enterprise Support
-**Multi-Device Auth**	Persistent, file-based session storage
-**Media Handling**	Send/Download all WhatsApp media types
-**Group Management**	Full CRUD for groups and participants
-**Event System**	20+ events for full bot control
-**Dependencies**	Zero bloat. Pure http://Node.js + WebSockets
-🛠️ Requirements
-- `Node.js >= 18.0.0`
-- Stable Internet Connection
+**Reply with Interactive Button**
+```bash
+        await sock.sendMessage(msg.key.remoteJid!, {
+            text: `AI Response: Hello!`,
+            footer: "Powered by @musteqeem/baileys",
+            buttons: [{ buttonId: 'menu', buttonText: { displayText: 'Menu' }, type: 1 }],
+            headerType: 1
+        })
+    })
+``` 
+🧠 Example: Send Album + Newsletter Message
+```bash
+await sock.sendMessage(jid, {
+    album: [
+        { image: { url: 'img1.jpg' }, caption: '1' },
+        { image: { url: 'img2.jpg' }, caption: '2' }
+    ]
+})
+```
+**😃 Send to Newsletter Channel**
+```bash
+await sock.newsletterMetadata("jid", "description")
+await sock.sendNewsletterMessage("newsletter_jid", { text: "New Update" })
+```
 
-🌐 Other Premium Projects by Musteqeem
+📊 @musteqeem/baileys vs WhiskeySocket
+Feature	@musteqeem/baileys	WhiskeySocket
+**Newsletter Media Upload**	✅ Fixed & Stable	❌ Broken
+**Interactive Buttons/Lists**	✅ Full Native API	⚠️ Partial
+**Album Messages**	✅ First-class Support	❌ Not Supported
+**Anti-Ban & Reconnect**	✅ Enterprise Logic	⚠️ Basic
+**Node 20+ & ESM**	✅ Modern Stack	⚠️ Legacy
+**Active Maintenance**	✅ By Musteqeem	⚠️ Sporadic
+---
 
-If you build AI + Automation, check these out:
+🌐 Community
+Join the professional developers building with us.
+
+<div align="center">
+
+<a href="https://chat.whatsapp.com/Ebd5NAkaJIDGb4GFNR23xs"><img src="https://img.shields.io/badge/WhatsApp%20Community-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" /></a>
+<a href="https://t.me/xadontech"><img src="https://img.shields.io/badge/Telegram%20Channel-0088cc?style=for-the-badge&logo=telegram&logoColor=white" /></a>
+<a href="https://t.me/xadonite"><img src="https://img.shields.io/badge/Contact%20Owner-6366F1?style=for-the-badge&logo=telegram&logoColor=white" /></a>
+
+</div>
+
+---
+
+🌐 Other Premium Projects by Musteqeem AKA Future Scientist
+
+If you build AI + Automation, these are for you:
 Project	Description
-**https://github.com/CEOcybershieldquad/XADON-AI**	Advanced Multi-Agent AI Framework. Build GPT-4 powered WhatsApp/Telegram AI employees
-**https://github.com/musteqeem/XADON_AI**	The core XADON AI Engine. Voice, Vision, and Tool-use for next-gen bots
-📚 Documentation
-For full API reference, see the https://github.com/musteqeem/Baileys/wiki
+https://github.com/CEOcybershieldquad/XADON-AI	Advanced Multi-Agent AI Framework. Deploy GPT-5 powered WhatsApp/Telegram AI employees with tool-use
+https://github.com/musteqeem/XADON_AI	The core XADON AI Engine. Voice, Vision, RAG, and Memory for next-generation bots
+---
 
 🤝 Contributing
-PRs, issues, and sponsorships welcome. This package is maintained for the professional bot developer community.
-**😁 Please Star the Repo**
+We welcome PRs from professional developers. Please read our contributing guidelines before submitting.
+
+Don't Forget to ✨ *Star* 🌟 and *Fork* this repo to support the project
+
+---
+### ⚠️ Responsible Use
+This library is for automation, customer support, and AI agents only. 
+Please follow WhatsApp's Terms of Service and local laws. 
+Do not use for spam, fraud, or harming others. "And cooperate in righteousness and piety" [Qur'an 5:2]
+---
 
 📄 License
-`MIT` © 2026 Musteqeem. Built with ❤️ for serious developers.
+`MIT` © 2026 Musteqeem. *MUSTEQEEM MD • Cybershield Squad alive*
 
 ---
 <div align="center">
-Made for Builders. Trusted in Production.
+Built for serious developers. Deployed in production worldwide.<br>
+**You are ultimately welcomed 👑🤗**
 </div>
+
